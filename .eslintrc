@@ -1,0 +1,29 @@
+{
+  "plugins": ["@typescript-eslint"],
+  "extends": ["airbnb-typescript", "react-app"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
+  },
+  "rules": {
+    "react/jsx-props-no-spreading": "off",
+    "import/prefer-default-export": "off",
+    "react/prop-types": "off",
+    "@typescript-eslint/quotes": "off",
+    "object-curly-newline": "off",
+    "comma-dangle": "off",
+    "react/jsx-wrap-multilines": "off",
+    "implicit-arrow-linebreak": "off",
+    "react/jsx-curly-newline": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "nonblock-statement-body-position": "off",
+    "curly": "off"
+  }
+}
