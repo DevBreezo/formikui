@@ -15,19 +15,20 @@ export const EZTextField: React.FC<EZTextFieldProps> = ({
   ...props
 }) => {
   const [field, meta] = useField(props);
-  const errorMsg = meta.error && meta.touched ? meta.error : "";
-  const isError = errorMsg !== "";
+  const errorMsg = meta.error && meta.touched ? meta.error : undefined;
+  const isError = errorMsg !== undefined;
+  const { helperText, ...other } = componentProps || {};
 
   return (
     <Grid item {...grid}>
       <TextField
         {...field}
         {...props}
-        helperText={errorMsg}
         error={isError}
         margin="dense"
         fullWidth
-        {...componentProps}
+        helperText={errorMsg || helperText}
+        {...other}
       />
     </Grid>
   );

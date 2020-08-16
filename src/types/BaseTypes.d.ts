@@ -4,6 +4,8 @@ import { InputGrid } from "./InputGrid";
 type ComponentProps = {
   style?: React.CSSProperties;
   className?: string;
+  disabled?: boolean;
+  helperText?: string;
   [key: string]: any;
 };
 

@@ -27,6 +27,7 @@ export const EZSelect: React.FC<EZSelectProps> = ({
   const [field, meta] = useField({ name });
   const errorMsg = meta.error && meta.touched ? meta.error : "";
   const isError = errorMsg !== "";
+  const helperText = componentProps?.helperText;
 
   return (
     <Grid item {...grid}>
@@ -37,7 +38,7 @@ export const EZSelect: React.FC<EZSelectProps> = ({
           multiple={isMulti}
           fullWidth
           {...field}
-          {...componentProps}
+          // {...componentProps}
         >
           {!isMulti && (
             <MenuItem value="">
@@ -58,6 +59,14 @@ export const EZSelect: React.FC<EZSelectProps> = ({
             style={{ fontSize: "16px", marginBottom: "10px" }}
           >
             {errorMsg}
+          </FormHelperText>
+        )}
+        {helperText && (
+          <FormHelperText
+            variant="standard"
+            style={{ fontSize: "14px", marginBottom: "10px" }}
+          >
+            {helperText}
           </FormHelperText>
         )}
       </FormControl>

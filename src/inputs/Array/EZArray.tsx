@@ -33,6 +33,8 @@ export const EZArray: React.FC<EZArrayProps> = ({
 }) => {
   const [field] = useField({ name });
   const maxReached = max !== undefined && field.value.length >= max;
+  const { helperText, disabled, ...other } = componentProps || {};
+
   const removeItem = (index: number) => {
     const tmp = [...field.value];
     tmp.splice(index, 1);
@@ -52,10 +54,15 @@ export const EZArray: React.FC<EZArrayProps> = ({
   }, []);
 
   return (
-    <Grid container item {...grid} {...componentProps}>
+    <Grid container item {...grid} {...other}>
       <Grid item xs={12}>
         <Typography>{label}</Typography>
       </Grid>
+      {helperText && (
+        <Grid item xs={12}>
+          <Typography variant="caption">{helperText}</Typography>
+        </Grid>
+      )}
       {field.value.map((_: any, index: number) => (
         // eslint-disable-next-line react/no-array-index-key
         <Box display="flex" key={index} style={{ width: "100%" }}>
@@ -63,21 +70,23 @@ export const EZArray: React.FC<EZArrayProps> = ({
             {of.map((item, i) => {
               const fieldName = `${name}.${index}.${item.fieldName}`;
               return inputSwitch(
-                { ...item, fieldName },
+                { ...item, fieldName, props: { ...item.props, disabled } },
                 i,
                 setFieldValue,
                 text,
               );
             })}
           </Grid>
-          <Button color="secondary" onClick={() => removeItem(index)}>
-            x
-          </Button>
+          {!disabled && (
+            <Button color="secondary" onClick={() => removeItem(index)}>
+              x
+            </Button>
+          )}
         </Box>
       ))}
-      {!maxReached && (
+      {!maxReached && !disabled && (
         <Grid item xs={12}>
-          <Button onClick={addItem}>
+          <Button color="primary" onClick={addItem}>
             {newItemText || text.addNewItem(label)}
           </Button>
         </Grid>
