@@ -79,7 +79,7 @@ const EZFormikUI: React.FC<Props> = ({
 }) => {
   const { text, captchaKey } = config;
   const initialValues = fieldsToInitialValues(fields);
-  const recaptchaRef = React.createRef<ReCAPTCHA>();
+  const recaptchaRef: any = React.useRef({});
 
   if (useCaptcha) {
     initialValues.captcha = "";
