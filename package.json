@@ -1,6 +1,6 @@
 {
   "name": "ez-formikui",
-  "version": "0.1.64",
+  "version": "0.1.66",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": {

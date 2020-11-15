@@ -2,7 +2,12 @@ import * as React from "react";
 import { AxiosResponse } from "axios";
 import ReCAPTCHA from "react-google-recaptcha";
 import Grid, { GridProps } from "@material-ui/core/Grid";
-import { Typography, CircularProgress, Button } from "@material-ui/core";
+import {
+  Typography,
+  CircularProgress,
+  Button,
+  TypographyProps,
+} from "@material-ui/core";
 import {
   Formik,
   Form,
@@ -57,6 +62,10 @@ type Props = {
     text?: string;
     other?: { style?: React.CSSProperties };
   };
+  typographyProps?: {
+    title?: TypographyProps;
+    paragraph?: TypographyProps;
+  };
 };
 
 const EZFormikUI: React.FC<Props> = ({
@@ -76,10 +85,12 @@ const EZFormikUI: React.FC<Props> = ({
     spacing: 1,
   },
   submitProps = { grid: { xs: 12 } },
+  typographyProps = { paragraph: {}, title: {} },
 }) => {
   const { text, captchaKey } = config;
   const initialValues = fieldsToInitialValues(fields);
   const recaptchaRef: any = React.useRef({});
+  const { title: titleProps, paragraph: paragraphProps } = typographyProps;
 
   if (useCaptcha) {
     initialValues.captcha = "";
@@ -134,7 +145,13 @@ const EZFormikUI: React.FC<Props> = ({
       {({ errors, touched, setFieldValue, isSubmitting }) => (
         <>
           {title && (
-            <Typography align="center" variant="h3" paragraph gutterBottom>
+            <Typography
+              align="center"
+              variant="h3"
+              paragraph
+              gutterBottom
+              {...titleProps}
+            >
               {title}
             </Typography>
           )}
@@ -144,6 +161,7 @@ const EZFormikUI: React.FC<Props> = ({
               align="center"
               variant="subtitle1"
               color="textSecondary"
+              {...paragraphProps}
             >
               {paragraph}
             </Typography>

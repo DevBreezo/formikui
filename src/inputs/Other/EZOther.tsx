@@ -26,7 +26,7 @@ export const EZOther: React.FC<EZOtherProps> = ({
 }) => {
   const { values } = useFormikContext();
   const [field, meta] = useField(props);
-  const errorMsg = meta.error ? meta.error : "";
+  const errorMsg = meta.touched && meta.error ? meta.error : "";
   const isError = errorMsg !== "";
 
   return (
