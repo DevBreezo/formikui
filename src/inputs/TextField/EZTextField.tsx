@@ -24,8 +24,9 @@ export const EZTextField: React.FC<EZTextFieldProps> = ({
       <TextField
         {...field}
         {...props}
+        variant="outlined"
         error={isError}
-        margin="dense"
+        margin="normal"
         fullWidth
         helperText={errorMsg || helperText}
         {...other}
